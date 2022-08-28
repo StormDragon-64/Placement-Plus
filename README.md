@@ -1,5 +1,3 @@
-# Pro Placer
+# Accurate Block Placement Reforged
 
-A Minecraft mod. Downloads can be found on CurseForge.
-
-![](https://i.imgur.com/QSBZztB.png)
+port of https://www.curseforge.com/minecraft/mc-mods/accurate-block-placement
