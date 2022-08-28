@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "vice.accurate_block_placement.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "modid.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+    "GameRendererMixin",
+    "KeyBindingMixin",
+    "MinecraftClientMixin"
+   ],
+  "minVersion": "0.8"
+}
