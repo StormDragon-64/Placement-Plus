@@ -2,7 +2,7 @@
   "required": true,
   "package": "vice.accurate_block_placement.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "modid.refmap.json",
+  "refmap": "accurate_block_placement.refmap.json",
   "mixins": [
   ],
   "client": [

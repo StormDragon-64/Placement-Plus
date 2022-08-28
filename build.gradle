@@ -66,10 +66,6 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     forge "net.minecraftforge:forge:${project.forge_version}"
 
-    def velocity = "com.velocitypowered:velocity-native:3.1.0"
-    modImplementation velocity
-    bundle velocity
-
     // Include LazyDFU so starting the server and client at the same time doesn't turn my computer into a fighter jet
     //modRuntime "com.github.astei:lazydfu:${project.lazydfu_version}"
 }
