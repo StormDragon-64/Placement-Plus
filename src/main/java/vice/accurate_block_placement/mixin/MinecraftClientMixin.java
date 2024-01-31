@@ -41,15 +41,6 @@ public abstract class MinecraftClientMixin implements IMinecraftClientAccessor
 			info.cancel();
 		}
 	}
-
-	@Redirect(method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;getStackInHand(Lnet/minecraft/util/Hand;)Lnet/minecraft/item/ItemStack;"))
-	private ItemStack onItemUse(ClientPlayerEntity player, Hand hand) {
-		ItemStack itemStack = this.player.getStackInHand(hand);
-
-		AccurateBlockPlacementMod.reachAroundPlacement.checkReachAroundAndExecute(hand, itemStack);
-
-		return itemStack;
-	}
 	
 	@Override
 	public void accurateblockplacement_SetItemUseCooldown(int cooldown)
