@@ -1,18 +1,15 @@
-package vice.accurate_block_placement.mixin;
+package stormdragon.accurate_block_placement.mixin;
 
 import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.MinecraftClient;
-import vice.accurate_block_placement.AccurateBlockPlacementMod;
-import vice.accurate_block_placement.IMinecraftClientAccessor;
+import stormdragon.accurate_block_placement.AccurateBlockPlacementMod;
+import stormdragon.accurate_block_placement.IMinecraftClientAccessor;
 
 @Mixin(MinecraftClient.class)
 public abstract class MinecraftClientMixin implements IMinecraftClientAccessor

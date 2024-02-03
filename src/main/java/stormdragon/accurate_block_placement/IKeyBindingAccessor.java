@@ -1,4 +1,4 @@
-package vice.accurate_block_placement;
+package stormdragon.accurate_block_placement;
 
 public interface IKeyBindingAccessor
 {

@@ -1,4 +1,4 @@
-package vice.accurate_block_placement.mixin;
+package stormdragon.accurate_block_placement.mixin;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -27,9 +27,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Direction.Axis;
 import net.minecraft.world.World;
-import vice.accurate_block_placement.AccurateBlockPlacementMod;
-import vice.accurate_block_placement.IKeyBindingAccessor;
-import vice.accurate_block_placement.IMinecraftClientAccessor;
+import stormdragon.accurate_block_placement.AccurateBlockPlacementMod;
+import stormdragon.accurate_block_placement.IKeyBindingAccessor;
+import stormdragon.accurate_block_placement.IMinecraftClientAccessor;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin

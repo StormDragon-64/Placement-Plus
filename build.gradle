@@ -1,5 +1,5 @@
 plugins {
-    id "dev.architectury.loom" version "0.11.0-SNAPSHOT"
+    id "dev.architectury.loom" version "1.4-SNAPSHOT"
     id "maven-publish"
     id 'com.github.johnrengelman.shadow' version "7.0.0+"
 }
@@ -40,12 +40,6 @@ loom {
             mod project.mod_id
         }
     }
-
-    launches {
-        data {
-            arg "--existing", file("src/main/resources").absolutePath
-        }
-    }
 }
 
 repositories {
@@ -53,12 +47,6 @@ repositories {
         url "https://repo.velocitypowered.com/snapshots/"
     }
     maven { name 'Jitpack'; url 'https://jitpack.io' }
-    // in this example, we need the following maven
-    // to satisfy our dependency for JEI.
-    maven {
-        name = "Progwml6 (Just Enough Items)"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
 }
 
 dependencies {
