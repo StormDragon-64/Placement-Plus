@@ -9,15 +9,16 @@ license="LGPL-3.0"
     version="${mod_version}"
     displayURL="${mod_url}"
     authors="${mod_author}"
+    logoFile="icon.png"
 
-[[dependencies.placement_plus]]
+[[dependencies."${mod_id}"]]
     modId="forge"
     mandatory=true
     versionRange="[${forge_version},)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.placement_plus]]
+[[dependencies."${mod_id}"]]
     modId="minecraft"
     mandatory=true
     versionRange="[${mc_version},)"
