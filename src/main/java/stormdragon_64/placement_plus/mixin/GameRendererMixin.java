@@ -1,12 +1,4 @@
-package stormdragon.accurate_block_placement.mixin;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+package stormdragon_64.placement_plus.mixin;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -14,22 +6,26 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
+import net.minecraft.item.*;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.Direction.Axis;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import stormdragon.accurate_block_placement.AccurateBlockPlacementMod;
-import stormdragon.accurate_block_placement.IKeyBindingAccessor;
-import stormdragon.accurate_block_placement.IMinecraftClientAccessor;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import stormdragon_64.placement_plus.IKeyBindingAccessor;
+import stormdragon_64.placement_plus.IMinecraftClientAccessor;
+import stormdragon_64.placement_plus.PlacementPlus;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+
+
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin
@@ -206,9 +202,9 @@ public abstract class GameRendererMixin
 	@Inject(method = "updateTargetedEntity", at = @At("RETURN"))
 	private void onUpdateTargetedEntityComplete(CallbackInfo info)
 	{
-		if(!AccurateBlockPlacementMod.isAccurateBlockPlacementEnabled) {
+		if(!PlacementPlus.isPlacementPlusEnabled) {
 			// reset all state just in case
-			AccurateBlockPlacementMod.disableNormalItemUse = false;
+			PlacementPlus.disableNormalItemUse = false;
 			
 			lastSeenBlockPos = null;
 			lastPlacedBlockPos = null;
@@ -223,7 +219,7 @@ public abstract class GameRendererMixin
 			
 			return;
 		}
-		
+
 		MinecraftClient client = MinecraftClient.getInstance();
 
 		// safety checks
@@ -232,10 +228,11 @@ public abstract class GameRendererMixin
 			return;
 		}
 
+
 		// will be set to true only if needed
-		AccurateBlockPlacementMod.disableNormalItemUse = false;
+		PlacementPlus.disableNormalItemUse = false;
 		IKeyBindingAccessor keyUseAccessor = (IKeyBindingAccessor) (Object) client.options.useKey;
-		Boolean freshKeyPress = keyUseAccessor.accurateblockplacement_GetTimesPressed() > 0;
+		Boolean freshKeyPress = keyUseAccessor.placement_plus_GetTimesPressed() > 0;
 
 		Item currentItem = getItemInUse(client);
 
@@ -266,7 +263,7 @@ public abstract class GameRendererMixin
 		if(currentItem == null)
 			return;
 
-		// this this item isn't a block, let vanilla take over
+		// this item isn't a block, let vanilla take over
 		if(!(currentItem instanceof BlockItem))
 			return;
 
@@ -297,7 +294,7 @@ public abstract class GameRendererMixin
 		// note: check both freshKey and current state in cause of shitty frame rates
 		if((freshKeyPress || client.options.useKey.isPressed())) {
 			// it's a block!! it's go time!
-			AccurateBlockPlacementMod.disableNormalItemUse = true;
+			PlacementPlus.disableNormalItemUse = true;
 
 			ItemPlacementContext targetPlacement = new ItemPlacementContext(new ItemUsageContext(client.player, handOfCurrentItemInUse, blockHitResult));
 
@@ -344,7 +341,7 @@ public abstract class GameRendererMixin
 
 			Boolean hasMouseMoved = (currentMouseRatio != null && lastFreshPressMouseRatio != null && lastFreshPressMouseRatio.distanceTo(currentMouseRatio) >= 0.1);
 
-			Boolean isOnCooldown = autoRepeatWaitingOnCooldown && clientAccessor.accurateblockplacement_GetItemUseCooldown() > 0 && !hasMouseMoved;
+			Boolean isOnCooldown = autoRepeatWaitingOnCooldown && clientAccessor.placement_plus_GetItemUseCooldown() > 0 && !hasMouseMoved;
 
 			// if [ we are still holding the same block we starting pressing 'use' with] AND
 			// [ [ this is a fresh keypress ] OR
@@ -359,16 +356,16 @@ public abstract class GameRendererMixin
 						autoRepeatWaitingOnCooldown = false;
 
 						HitResult currentHitResult = client.crosshairTarget;
-						
+
 						// try to place the backlog
 						for(HitResult prevHitResult : backFillList)	{
 							client.crosshairTarget = prevHitResult;
 							// use item
-							clientAccessor.accurateblockplacement_DoItemUseBypassDisable();
+							clientAccessor.placement_plus_DoItemUseBypassDisable();
 						}
-						
+
 						backFillList.clear();
-						
+
 						client.crosshairTarget = currentHitResult;
 					}
 
@@ -381,7 +378,7 @@ public abstract class GameRendererMixin
 					// should be the same
 					while(runOnceFlag || client.options.useKey.wasPressed()) {
 						// use item
-						clientAccessor.accurateblockplacement_DoItemUseBypassDisable();
+						clientAccessor.placement_plus_DoItemUseBypassDisable();
 
 						// update last placed
 						if(!oldBlock.equals(client.world.getBlockState(targetPlacement.getBlockPos()).getBlock())) {

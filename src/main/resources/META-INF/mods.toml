@@ -1,6 +1,6 @@
 modLoader="javafml"
 loaderVersion="[${loader_version},)"
-license="The Unlicense"
+license="LGPL-3.0"
 
 [[mods]]
     modId="${mod_id}"
@@ -10,14 +10,14 @@ license="The Unlicense"
     displayURL="${mod_url}"
     authors="${mod_author}"
 
-[[dependencies.proplacer]]
+[[dependencies.placement_plus]]
     modId="forge"
     mandatory=true
     versionRange="[${forge_version},)"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.proplacer]]
+[[dependencies.placement_plus]]
     modId="minecraft"
     mandatory=true
     versionRange="[${mc_version},)"
