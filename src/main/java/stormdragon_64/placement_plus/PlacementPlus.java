@@ -7,7 +7,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
 @Mod(PlacementPlus.MODID)
 public class PlacementPlus {
 

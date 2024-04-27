@@ -26,12 +26,9 @@ public class KeyBindingHandler {
             if (PlacementPlus.isPlacementPlusEnabled) {
                 PlacementPlus.isPlacementPlusEnabled = false;
                 client.player.sendMessage(Text.translatable("response.placement_plus.disabled").fillStyle(Style.EMPTY.withColor(16733525)), true);
-
-                PlacementPlus.LOGGER.atWarn().log("response attempted: enabled");
             } else {
                 PlacementPlus.isPlacementPlusEnabled = true;
                 client.player.sendMessage(Text.translatable("response.placement_plus.enabled").fillStyle(Style.EMPTY.withColor(5635925)), true);
-                PlacementPlus.LOGGER.atWarn().log("response attempted: disabled");
             }
         }
 
