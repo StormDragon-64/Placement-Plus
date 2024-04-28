@@ -15,7 +15,7 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_17
 
 version = "${minecraft_version}_${mod_version}"
 group = project.maven_group
-
+loom.mixin.useLegacyMixinAp = false
 configurations {
     bundle {
         // These two lines aren't technically needed but it's a good practice to have them.
